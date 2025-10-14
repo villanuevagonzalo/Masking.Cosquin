@@ -6,6 +6,8 @@
     "start": "ng serve",
     "build": "ng build",
     "watch": "ng build --watch --configuration development",
+    "github-build": "ng build --configuration production --base-href 'https://villanuevagonzalo.github.io/Masking.Cosquin/'",
+    "github-deploy": "npx angular-cli-ghpages --dir=dist/Masking.Cosquin/browser --no-silent",
     "test": "ng test"
   },
   "prettier": {
