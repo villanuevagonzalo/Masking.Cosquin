@@ -1,10 +1,116 @@
-<div id="viewer_sidebar">
-  <button (click)="filter()">filter</button>
-  <button (click)="createCube()">Add Cube</button>
-  <input type="file" accept=".ifc" (change)="onFileSelected($event)">
-  <div>
-  {{ hoverId }}</div>  <div>
-  {{ itemData | json }}</div>
-</div>
-<div #rendererContainer id="viewer_container" (pointermove)="handleMouseOver($event)">
+<div #container id="viewer_container" (click)="dispatchClick($event)"></div>
+<div id="viewer_box">
+  <img src="/assets/logo.png" height="100px" />
+
+  <h1 style="margin-bottom: 2rem">ANTHROTECTA</h1>
+
+  <nav class="social">
+    <a
+      class="social-link"
+      href="https://instagram.com/masking.art"
+      target="_blank"
+      rel="noopener noreferrer"
+      aria-label="Ir a Instagram"
+    >
+      <!-- Ícono Instagram (SVG) -->
+      <svg viewBox="0 0 24 24" width="22" height="22" aria-hidden="true">
+        <path
+          d="M7 2h10a5 5 0 0 1 5 5v10a5 5 0 0 1-5 5H7a5 5 0 0 1-5-5V7a5 5 0 0 1 5-5zm0 2a3 3 0 0 0-3 3v10a3 3 0 0 0 3 3h10a3 3 0 0 0 3-3V7a3 3 0 0 0-3-3H7zm5 3.5A5.5 5.5 0 1 1 6.5 13 5.51 5.51 0 0 1 12 7.5zm0 2A3.5 3.5 0 1 0 15.5 13 3.5 3.5 0 0 0 12 9.5zM18 6.9a1.1 1.1 0 1 1-1.1 1.1A1.1 1.1 0 0 1 18 6.9z"
+        />
+      </svg>
+      <span>@masking.art</span>
+    </a>
+
+    <a
+      class="social-link"
+      href="mailto:artistasmasking@gmail.com?subject=Contacto&body=Hola%2C%20te%20escribo%20por..."
+      aria-label="Enviar email"
+    >
+      <!-- Ícono Mail (SVG) -->
+      <svg viewBox="0 0 24 24" width="22" height="22" aria-hidden="true">
+        <path
+          d="M2 6a3 3 0 0 1 3-3h14a3 3 0 0 1 3 3v12a3 3 0 0 1-3 3H5a3 3 0 0 1-3-3zm3-1h14a1 1 0 0 1 1 1v.2l-8 5.3-8-5.3V6a1 1 0 0 1 1-1zm15 4.1-6.9 4.6a2 2 0 0 1-2.2 0L4 9.1V18a1 1 0 0 0 1 1h14a1 1 0 0 0 1-1z"
+        />
+      </svg>
+      <span>artistasmasking@gmail.com</span>
+    </a>
+  </nav>
+  <h2><span class="tag">Concepto & Fundamento</span></h2>
+
+  <p class="lead">
+    La instalación propone una
+    <span class="hl">metáfora del planeta intervenido</span>:
+    <span class="hl2">montaña abierta</span>,
+    <span class="hl2">metal y plástico como nuevas rocas</span>, y una
+    <span class="hl">respiración artificial</span> como eco de la vida natural.
+  </p>
+
+  <p>
+    Representa la <span class="hl3">visión de progreso</span> que corta, modela
+    y reconfigura el paisaje, haciendo visible el
+    <span class="hl">cambio que producimos</span>. Es una forma viva donde
+    <span class="hl2">arte, materia y entorno</span> laten en un mismo pulso: no
+    invade la naturaleza, <strong>emerge</strong> de ella,
+    <span class="hl">respirando al ritmo del paisaje y del público</span>.
+  </p>
+
+  <p>
+    Inspirada en obras de infraestructura de las sierras cordobesas (p.ej.
+    Camino de las Altas Cumbres), la pieza reproduce el
+    <strong>gesto de la montaña partida</strong>: un corte limpio que revela
+    tanto la <span class="hl2">potencia creadora</span> como la
+    <span class="hl3">violencia de la intervención</span>. Esa fisura, hecha
+    pasaje, invita a <strong>atravesarla</strong> y ser parte activa del relato.
+  </p>
+
+  <figure>
+    <img src="assets/imagen1.png" alt="Croquis conceptual — montaña partida" />
+    <figcaption>Primer croquis conceptual — fisura/pasaje.</figcaption>
+  </figure>
+  <p class="muted">
+    Mirada simbólica: el ser humano <em>respira</em> dentro de la naturaleza
+    pero también la modifica, alterando su pulso vital. La obra visibiliza esa
+    <strong>respiración compartida</strong>: un planeta que aún late,
+    condicionado por la huella humana.
+  </p>
+  <br />
+  <h2><span class="tag">Descripción formal</span></h2>
+  <p>
+    Dos grandes <strong>bloques verticales</strong> de
+    <span class="hl2">andamios modulares</span> (separados por un pasillo
+    central) generan la silueta de una <strong>sierra fracturada</strong>. Los
+    andamios —símbolo de construcción, progreso y precariedad— funcionan como
+    <em>lenguaje escultórico</em>, resonando con la
+    <span class="hl2">sustentabilidad</span> y la <em>efimeridad</em> del
+    festival.
+  </p>
+
+  <figure>
+    <img src="assets/imagen2.png" alt="Croquis conceptual — estructura 1" />
+    <img src="assets/imagen3.png" alt="Croquis conceptual — estructura 1" />
+    <img src="assets/imagen4.png" alt="Croquis conceptual — estructura 1" />
+  </figure>
+  <p>
+    Cada bloque contiene
+    <strong>bolsas de bobina plástica reciclada</strong> (preferentemente
+    blancas), iluminadas con <span class="hl2">luz fría</span> desde el interior
+    y alimentadas por <strong>turbinas de aire</strong> en
+    <em>pulsos mecanizados</em>, generando la sensación de que los volúmenes
+    <strong>respiran</strong> como <span class="hl">dos grandes pulmones</span>.
+  </p>
+
+  <p>
+    En el pasillo, placas de <strong>PEAD u OSB perforadas</strong> revestidas
+    con <strong>latas recicladas</strong> desplegadas forman miles de púas
+    metálicas. Viento y música provocan <em>brillo y vibración</em>, uniendo lo
+    <strong>industrial</strong> con lo <strong>orgánico</strong>. Iluminación
+    <span class="hl2">magenta</span> refuerza reflejos sobre el aluminio.
+  </p>
+
+  <p>
+    De noche, un sistema <strong>pixel LED</strong> recorre la estructura en
+    <span class="hl2">tonos azules</span>, sincronizado con la atmósfera del
+    festival: la pieza se vuelve un <strong>organismo dinámico</strong> que
+    <em>respira</em> al ritmo del evento.
+  </p>
 </div>

@@ -7,5 +7,5 @@ import { RouterOutlet } from '@angular/router';
   templateUrl: './template.html'
 })
 export class App {
-  protected title = 'Alpine.IFCViewer';
+  protected title = 'Masking.Cosquin';
 }

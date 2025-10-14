@@ -5,11 +5,7 @@ import { Home } from '../Pages/Home/Home';
 export const routes: Routes = [
     {
         path: '',
-        component: Home
-    },
-    
-    {
-        path: 'viewer',
         component: Viewer
-    }
+    },
+    { path: '**', redirectTo: '/' }
 ];

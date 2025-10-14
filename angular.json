@@ -3,7 +3,7 @@
   "version": 1,
   "newProjectRoot": "projects",
   "projects": {
-    "Alpine.IFCViewer": {
+    "masking.cosquin": {
       "projectType": "application",
       "schematics": {
         "@schematics/angular:component": {
@@ -42,17 +42,15 @@
                 "output": "assets/web-ifc"
               }
             ],
-            "styles": [
-              "src/Core/styles.scss"
-            ]
+            "styles": ["src/Core/styles.scss"]
           },
           "configurations": {
             "production": {
               "budgets": [
                 {
                   "type": "initial",
-                  "maximumWarning": "500kB",
-                  "maximumError": "1MB"
+                  "maximumWarning": "6mb",
+                  "maximumError": "7mb"
                 },
                 {
                   "type": "anyComponentStyle",
@@ -74,10 +72,10 @@
           "builder": "@angular/build:dev-server",
           "configurations": {
             "production": {
-              "buildTarget": "Alpine.IFCViewer:build:production"
+              "buildTarget": "Masking.Cosquin:build:production"
             },
             "development": {
-              "buildTarget": "Alpine.IFCViewer:build:development"
+              "buildTarget": "Masking.Cosquin:build:development"
             }
           },
           "defaultConfiguration": "development"
@@ -96,9 +94,7 @@
                 "input": "public"
               }
             ],
-            "styles": [
-              "src/Core/styles.scss"
-            ]
+            "styles": ["src/Core/styles.scss"]
           }
         }
       }

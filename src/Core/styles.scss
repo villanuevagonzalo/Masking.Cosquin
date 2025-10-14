@@ -1,24 +1,112 @@
+/* ===== Paleta y tipografía ===== */
 body {
-    background: rgb(0, 27, 38);
-    margin: 0;
-    color: white;
-    display: flex;
+  --general-bg: #0f0f0f;
+
+  --pink: #ff23ac;
+  --pink-bg: #50002d;
+  --blue: #0095ff;
+  --blue-bg: #003c67;
+  --green: #00ff55;
+  --green-bg: #007631;
+
+  --accent: #d81b60; /* magenta intenso */
+  --accent-ink: #1b1b1b;
+  --soft-ink: #444;
+  --muted-ink: #666;
+  --chip-bg: #fff0f6;
+  --chip-brd: #ffc1dc;
+
+  /* Cuerpo: Open Sans */
+  font-family: "Open Sans", system-ui, -apple-system, Segoe UI, Roboto,
+    Helvetica, Arial, sans-serif;
+  background: var(--accent-ink);
+  margin: 0;
+  color: var(--chip-bg);
+  display: flex;
 }
 
-#app_container{
-    height: 100vh;
-    width: 100vw;
-    overflow: hidden;
-    display: flex;
-    flex-direction: column;
+#viewer_box h1,
+#viewer_box h2,
+#viewer_box h3 {
+  font-family: "Trebuchet MS", "Lucida Grande", "Lucida Sans Unicode",
+    "Lucida Sans", Arial, sans-serif;
+  letter-spacing: 0.2px;
+  margin: 0 0 0.5rem;
 }
 
-#navbar{
-    background-color: rgb(0, 17, 24);
-    height: 50px;
+#viewer_box h2 {
+  font-size: clamp(1.6rem, 1.2rem + 1.2vw, 2.2rem);
+  font-weight: 700;
+  line-height: 1.15;
+  position: relative;
+  padding-bottom: 0.4rem;
+  /* subrayado acento */
+  &::after {
+    content: "";
+    position: absolute;
+    left: 0;
+    bottom: 0;
+    width: 72px;
+    height: 4px;
+    background: var(--accent);
+    border-radius: 2px;
+  }
 }
 
-#container{
-    flex:1;
-    display: flex;
+#viewer_box h3 {
+  font-size: 2rem;
+  text-transform: uppercase;
+  letter-spacing: 0.06em;
+  font-weight: 700;
+  margin-top: 1.2rem;
+
+  @media (max-width: 768px) {
+    font-size: 1rem;
+  }
+}
+
+/* Párrafo base */
+#viewer_box p {
+  margin: 0.6rem 0;
+  font-size: 2rem;
+  line-height: 1.55;
+
+  @media (max-width: 768px) {
+    font-size: 1rem;
+  }
+}
+
+/* Párrafo destacado de entrada */
+#viewer_box .lead {
+  font-size: clamp(1.05rem, 0.95rem + 0.5vw, 1.25rem);
+  line-height: 1.45;
+  font-weight: 600;
+  /* barra lateral de énfasis */
+  padding-left: 0.8rem;
+  border-left: 4px solid var(--accent);
+}
+
+/* Chips/etiquetas */
+#viewer_box .tag {
+  display: inline-block;
+  font-weight: 700;
+  font-size: 0.85em;
+  color: var(--accent-ink);
+  background: var(--chip-bg);
+  border: 1px solid var(--chip-brd);
+  border-radius: 999px;
+  padding: 0.2em 0.7em;
+}
+
+#app_container {
+  height: 100vh;
+  width: 100vw;
+  overflow: hidden;
+  display: flex;
+  flex-direction: column;
+}
+
+#container {
+  flex: 1;
+  display: flex;
 }

@@ -1,38 +1,51 @@
 import * as OBC from "@thatopen/components";
 import * as FRAGS from "@thatopen/fragments";
 
-export const initFragmentsModels = (components: OBC.Components): OBC.FragmentsManager => {
+export const initFragmentsManager = (components: OBC.Components): OBC.FragmentsManager => {
 
-    const workerUrl = 'assets/fragments/worker.mjs';
-    const fragments = components.get(OBC.FragmentsManager);
-    fragments.init(workerUrl);
+  const workerUrl = 'assets/fragments/worker.mjs';
+  const fragments = components.get(OBC.FragmentsManager);
+  fragments.init(workerUrl);
 
-    return fragments;
-}
+  return fragments;
 
+};
 
-export const convertIFCArrayBuffertoFragmentBytes = async (arrayBuffer: ArrayBuffer): Promise<ArrayBuffer> => {
+export type ProgressCb = (progress: number, data: FRAGS.ProgressData) => void;
 
-    const serializer = new FRAGS.IfcImporter();
-    serializer.wasm = { absolute: true, path: '/assets/web-ifc/' };
+export const convertIFCArrayBuffertoFragmentBytes = async (
+  serializer: FRAGS.IfcImporter,
+  arrayBuffer: ArrayBuffer,
+  progressCallback: ProgressCb = () => {},
+): Promise<ArrayBuffer> => {
+  const ifcBytes = new Uint8Array(arrayBuffer);
+  const fragmentBytes = (
+    await serializer.process({
+      bytes: ifcBytes,
+      progressCallback,
+    })
+  ).buffer as ArrayBuffer;
 
-    const ifcBytes = new Uint8Array(arrayBuffer);
-    const fragmentBytes = (await serializer.process({ bytes: ifcBytes })).buffer as ArrayBuffer;
-    
-    return fragmentBytes;
-}
+  return fragmentBytes;
+};
 
-export const convertIFCFiletoFragmentBytes = async (file: File): Promise<ArrayBuffer> => {
+export const convertIFCFiletoFragmentBytes = async ( serializer: FRAGS.IfcImporter, file: File ): Promise<ArrayBuffer> => {
 
-    return convertIFCArrayBuffertoFragmentBytes(await file.arrayBuffer());
+  return convertIFCArrayBuffertoFragmentBytes(serializer, await file.arrayBuffer());
 
-}
+};
 
-export const convertIFCPathtoFragmentBytes = async (filePath: string): Promise<ArrayBuffer> => {
+export const convertIFCPathtoFragmentBytes = async (
+  serializer: FRAGS.IfcImporter,
+  filePath: string,
+  progressCallback: ProgressCb = () => {},
+): Promise<ArrayBuffer> => {
+  const ifcFile = await fetch(filePath);
+  const ifcBuffer = await ifcFile.arrayBuffer();
 
-    const ifcFile = await fetch(filePath);
-    const ifcBuffer = await ifcFile.arrayBuffer();
-    
-    return convertIFCArrayBuffertoFragmentBytes(ifcBuffer);
-    
-}
+  return convertIFCArrayBuffertoFragmentBytes(
+    serializer,
+    ifcBuffer,
+    progressCallback,
+  );
+};
