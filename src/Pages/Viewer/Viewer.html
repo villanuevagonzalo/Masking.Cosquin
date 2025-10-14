@@ -1,0 +1,10 @@
+<div id="viewer_sidebar">
+  <button (click)="filter()">filter</button>
+  <button (click)="createCube()">Add Cube</button>
+  <input type="file" accept=".ifc" (change)="onFileSelected($event)">
+  <div>
+  {{ hoverId }}</div>  <div>
+  {{ itemData | json }}</div>
+</div>
+<div #rendererContainer id="viewer_container" (pointermove)="handleMouseOver($event)">
+</div>
