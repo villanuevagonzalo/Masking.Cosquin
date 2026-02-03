@@ -69,7 +69,17 @@ export class IfcViewerContext {
 
     this.world.renderer.postproduction.enabled = true;
 
-    this.importer.wasm = { absolute: true, path: '/assets/web-ifc/' };
+    
+    this.world.camera.projection.onChanged.add(() => {
+      this.currentModel?.useCamera(this.world?.camera?.three);
+      this.world.camera.controls.update(0);
+      this.world.renderer?.postproduction.updateCamera();
+      this.fragmentsManager.core.update(true);
+    });
+
+    this.world.camera.projection.set('Perspective');
+
+    this.importer.wasm = { absolute: true, path: 'assets/web-ifc/' };
 
     // Resize handling
     // this._resizeObs = new ResizeObserver(() => this._handleResize());

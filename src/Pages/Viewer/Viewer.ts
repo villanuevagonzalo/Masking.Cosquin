@@ -35,7 +35,7 @@ export class Viewer implements OnInit{
       dynamicAnchor: false,
     });
 
-    await this.viewerContext.loadModel('/assets/model.ifc');
+    await this.viewerContext.loadModel('assets/model.ifc');
     
     this.boxer = this.viewerContext.components.get(BoundingBoxer);
     this.boxer.addFromModels();

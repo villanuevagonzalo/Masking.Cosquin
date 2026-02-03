@@ -72,10 +72,10 @@
           "builder": "@angular/build:dev-server",
           "configurations": {
             "production": {
-              "buildTarget": "Masking.Cosquin:build:production"
+              "buildTarget": "masking.cosquin:build:production"
             },
             "development": {
-              "buildTarget": "Masking.Cosquin:build:development"
+              "buildTarget": "masking.cosquin:build:development"
             }
           },
           "defaultConfiguration": "development"
